@@ -26,8 +26,7 @@ jobs:
           # One of MERGE, SQUASH, REBASE (default: MERGE)
           autoMergeMethod: MERGE
           # Ignore pull requests without these labels
-          # (commenting out because we want all MRs)
-          # requiredLabels: auto-merge
+          requiredLabels: auto-merge
           # Required at least 2 approves (default: 0)
           requiredApprovals: 0
           # Required these status checks success
