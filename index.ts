@@ -9,7 +9,7 @@ process.env['DD_SITE'] = "us3.datadoghq.com"
  const apiInstance = new v2.LogsApi(configuration);
 
  const message = {
-  appName: "test",
+  appName: "merge A",
   environment: "test",
   context: "test",
   capabilityCount: 23423,
