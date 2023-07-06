@@ -1,1 +1,1 @@
-const test = 'featureN'
+const test = 'main'
