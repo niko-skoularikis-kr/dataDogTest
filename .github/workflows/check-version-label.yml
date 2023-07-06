@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   CheckVersionLabel:
-    runs-on: [self-hosted, kubernetes]
+    runs-on: ubuntu-latest
     steps:
       - name: Check Version Labels
         uses: yashhy/pr-label-check-and-comment-action@v1.0.1
