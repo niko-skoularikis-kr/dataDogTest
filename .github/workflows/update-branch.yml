@@ -22,7 +22,7 @@ jobs:
       - uses: lcdsmao/update-branch@v3
         with:
           # Or use personal access token
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DD_TOKEN }}
           # One of MERGE, SQUASH, REBASE (default: MERGE)
           autoMergeMethod: MERGE
           # Ignore pull requests without these labels
