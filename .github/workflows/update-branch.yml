@@ -29,7 +29,7 @@ jobs:
           # (commenting out because we want all MRs)
           # requiredLabels: auto-merge
           # Required at least 2 approves (default: 0)
-          requiredApprovals: 1
+          requiredApprovals: 0
           # Required these status checks success
           requiredStatusChecks: |
             CheckVersionLabel
