@@ -1,45 +1,45 @@
 name: Update branch
 
- on:
-   push:
-     branches:
-       - main
-   pull_request:
-   # (commenting out because we want this on all merge requests)
-   #  types:
-   #    - labeled
-   check_suite:
-     types:
-       - completed
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  # (commenting out because we want this on all merge requests)
+  #  types:
+  #    - labeled
+  check_suite:
+    types:
+      - completed
 
-   # Allows you to run this workflow manually from the Actions tab
-   workflow_dispatch:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
- jobs:
-   update-branch:
-     runs-on: ubuntu-latest
-     steps:
-       - uses: lcdsmao/update-branch@v3
-         with:
-           # Or use personal access token
-           token: ${{ secrets.GITHUB_TOKEN }}
-           # One of MERGE, SQUASH, REBASE (default: MERGE)
-           autoMergeMethod: MERGE
-           # Ignore pull requests without these labels
-           # (commenting out because we want all MRs)
-           # requiredLabels: auto-merge
-           # Required at least 2 approves (default: 0)
-           requiredApprovals: 0
-           # Required approvals from all requested reviewers
-           # allRequestedReviewersMustApprove: true
-           # Required these status checks success
-           # (commenting out because we want to update with main regardless of status check statuses)
-           # requiredStatusChecks: |
-           #  build_pr
-           #  WIP
-           # Optionally set the maximum amount of pull requests to match against (default: 50)
-           fetchMaxPr: 50
-           # Optionally set the maximum amount of pull request checks to fetch (default: 100)
-           fetchMaxPrChecks: 100
-           # Optionally set the maximum amount of pull request labels to fetch (default: 10)
-           fetchMaxPrLabels: 10
+jobs:
+  update-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lcdsmao/update-branch@v3
+        with:
+          # Or use personal access token
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # One of MERGE, SQUASH, REBASE (default: MERGE)
+          autoMergeMethod: MERGE
+          # Ignore pull requests without these labels
+          # (commenting out because we want all MRs)
+          # requiredLabels: auto-merge
+          # Required at least 2 approves (default: 0)
+          requiredApprovals: 0
+          # Required approvals from all requested reviewers
+          # allRequestedReviewersMustApprove: true
+          # Required these status checks success
+          # (commenting out because we want to update with main regardless of status check statuses)
+          # requiredStatusChecks: |
+          #  build_pr
+          #  WIP
+          # Optionally set the maximum amount of pull requests to match against (default: 50)
+          fetchMaxPr: 50
+          # Optionally set the maximum amount of pull request checks to fetch (default: 100)
+          fetchMaxPrChecks: 100
+          # Optionally set the maximum amount of pull request labels to fetch (default: 10)
+          fetchMaxPrLabels: 10
