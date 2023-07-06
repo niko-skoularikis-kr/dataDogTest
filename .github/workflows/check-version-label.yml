@@ -1,0 +1,24 @@
+name: Check Version Label
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - labeled
+      - unlabeled
+      - synchronize
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  CheckVersionLabel:
+    runs-on: [self-hosted, kubernetes]
+    steps:
+      - name: Check Version Labels
+        uses: yashhy/pr-label-check-and-comment-action@v1.0.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          required_labels: 'version-none, version-patch, version-minor, version-major'
