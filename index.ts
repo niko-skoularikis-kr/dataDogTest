@@ -9,7 +9,7 @@ process.env['DD_SITE'] = "us3.datadoghq.com"
  const apiInstance = new v2.LogsApi(configuration);
 
  const message = {
-  appName: "featC",
+  appName: "featE",
   environment: "test",
   context: "test",
   capabilityCount: 23423,
