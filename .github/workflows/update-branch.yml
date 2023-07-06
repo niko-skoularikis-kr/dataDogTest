@@ -29,10 +29,7 @@ jobs:
           # (commenting out because we want all MRs)
           # requiredLabels: auto-merge
           # Required at least 2 approves (default: 0)
-          # Required approvals from all requested reviewers
-          # allRequestedReviewersMustApprove: true
+          requiredApprovals: 1
           # Required these status checks success
-          # (commenting out because we want to update with main regardless of status check statuses)
-          # requiredStatusChecks: |
-          #  build_pr
-          #  WIP
+          requiredStatusChecks: |
+            CheckVersionLabel
