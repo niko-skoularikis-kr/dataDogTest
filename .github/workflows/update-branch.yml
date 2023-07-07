@@ -4,31 +4,31 @@ on:
   push:
     branches:
       - main
-  pull_request:
-  # (commenting out because we want this on all merge requests)
-  #  types:
-  #    - labeled
-  check_suite:
-    types:
-      - completed
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 jobs:
-  update-branch:
+  welcome:
     runs-on: ubuntu-latest
     steps:
-      - uses: lcdsmao/update-branch@v3
+      - uses: actions/github-script@v6
         with:
-          # Or use personal access token
-          token: ${{ secrets.MY_PAT }}
-          # One of MERGE, SQUASH, REBASE (default: MERGE)
-          autoMergeMethod: MERGE
-          # Ignore pull requests without these labels
-          requiredLabels: auto-merge
-          # Required at least 2 approves (default: 0)
-          requiredApprovals: 0
-          # Required these status checks success
-          requiredStatusChecks: |
-            CheckVersionLabel
+          script: |
+            // Get a list of all issues created by the PR opener
+            // See: https://octokit.github.io/rest.js/#pagination
+            const baseBranch = github.context.payload.ref
+            const pullsResponse = await client.pulls.list({
+              ...github.context.repo,
+              base: baseBranch,
+              state: 'open',
+            })
+            
+            const prs = pullsResponse.data
+
+
+            await Promise.all(
+              prs.map((pr) => {
+                  client.pulls.updateBranch({
+                      ...github.context.repo,
+                      pull_number: pr.number,
+                  })
+              }),
+            )
