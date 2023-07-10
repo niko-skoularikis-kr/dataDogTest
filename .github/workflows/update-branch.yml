@@ -12,7 +12,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            // Get all MRs
+            // Get all open MRs
             const pullsResponse = await github.rest.pulls.list({
               ...context.repo,
               base: "main"
@@ -20,6 +20,10 @@ jobs:
             });
             
             const prs = pullsResponse.data
+
+            for (let pr of prs) {
+              console.log(pr.number)
+            }
 
             // update all MRs with main.
             await Promise.all(
