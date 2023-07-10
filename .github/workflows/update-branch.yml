@@ -20,11 +20,7 @@ jobs:
             });
             
             const prs = pullsResponse.data
-
-            for (let pr of prs) {
-              console.log(pr.number)
-            }
-
+            
             // update all MRs with main.
             await Promise.all(
               prs.map((pr) => {
