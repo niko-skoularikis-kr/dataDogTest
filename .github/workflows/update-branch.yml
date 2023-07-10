@@ -12,22 +12,20 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            // Get a list of all issues created by the PR opener
-            // See: https://octokit.github.io/rest.js/#pagination
-            const baseBranch = github.context.payload.ref
-            const pullsResponse = await client.pulls.list({
-              ...github.context.repo,
-              base: baseBranch,
-              state: 'open',
-            })
+            // Get all MRs
+            const pullsResponse = await github.rest.pulls.list({
+              ...context.repo,
+              base: "main"
+              // state: "open"
+            });
             
             const prs = pullsResponse.data
 
-
+            // update all MRs with main.
             await Promise.all(
               prs.map((pr) => {
-                  client.pulls.updateBranch({
-                      ...github.context.repo,
+                  github.rest.pulls.updateBranch({
+                      ...context.repo,
                       pull_number: pr.number,
                   })
               }),
