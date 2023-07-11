@@ -15,7 +15,6 @@ jobs:
           github-token: ${{ secrets.TESTBEST }}
           script: |
             // Get all open MRs
-            try {
             const pullsResponse = await github.rest.pulls.list({
               ...context.repo,
               base: "main",
@@ -33,6 +32,3 @@ jobs:
                   })
               }),
             )
-            } catch (e) {
-              console.log(e)
-            }
