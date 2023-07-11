@@ -11,8 +11,10 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
+          token: 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
           script: |
             // Get all open MRs
+
             const pullsResponse = await github.rest.pulls.list({
               ...context.repo,
               base: "main"
@@ -20,7 +22,7 @@ jobs:
             });
             
             const prs = pullsResponse.data
-            
+
             // update all MRs with main.
             await Promise.all(
               prs.map((pr) => {
