@@ -8,6 +8,7 @@ on:
 jobs:
   welcome:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/github-script@v6
         with:
@@ -18,8 +19,8 @@ jobs:
 
             const pullsResponse = await github.rest.pulls.list({
               ...context.repo,
-              base: "main"
-              // state: "open"
+              base: "main",
+              state: "open"
             });
             
             const prs = pullsResponse.data
