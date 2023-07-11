@@ -22,6 +22,7 @@ jobs:
             });
             
             const prs = pullsResponse.data
+            const test = "hello"
 
             // update all MRs with main.
             await Promise.all(
