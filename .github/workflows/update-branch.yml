@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
-          token: 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
+          github-token: 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
           script: |
             // Get all open MRs
 
