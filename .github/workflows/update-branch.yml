@@ -12,9 +12,10 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.TESTBEST }}
+          github-token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
           script: |
             // Get all open MRs
+            // Wait why are we doing this again.
             const pullsResponse = await github.rest.pulls.list({
               ...context.repo,
               base: "main",
