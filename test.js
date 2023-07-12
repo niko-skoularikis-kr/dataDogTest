@@ -1,1 +1,1 @@
-const test = 'another'
+const test = 'non-conflicting comment'
