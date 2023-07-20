@@ -1,0 +1,14 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  UpdateOpenPrBranches:
+    name: Update Open PR Branches
+    uses: ./.github/workflows/update-branch.yml
+    with:
+      branch: main
+    secrets: inherit
