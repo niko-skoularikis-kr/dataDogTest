@@ -22,7 +22,7 @@ jobs:
             // Get all open MRs
             const pullsResponse = await github.rest.pulls.list({
               ...context.repo,
-              base: ${{ inputs.branch }},
+              base: "${{ inputs.branch }}",
               state: "open"
             });
             const prs = pullsResponse.data
