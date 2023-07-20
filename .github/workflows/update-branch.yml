@@ -28,7 +28,7 @@ jobs:
             const prs = pullsResponse.data
 
             // update all MRs with main.
-            await Promise.all(
+            await Promise.allSettled(
               prs.map((pr) => {
                   github.rest.pulls.updateBranch({
                       ...context.repo,
