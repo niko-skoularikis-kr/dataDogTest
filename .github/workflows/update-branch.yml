@@ -1,12 +1,17 @@
 name: Update branch
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
+    inputs:
+      branch:
+        description: 'Name of the branch to update with, defaults to main'
+        required: false
+        default: 'main'
+        type: 'string'
 
 jobs:
   welcome:
+    name: Updates Open PR Branches with base branch
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
@@ -17,7 +22,7 @@ jobs:
             // Get all open MRs
             const pullsResponse = await github.rest.pulls.list({
               ...context.repo,
-              base: "main",
+              base: ${{ inputs.branch }},
               state: "open"
             });
             const prs = pullsResponse.data
