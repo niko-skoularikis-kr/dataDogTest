@@ -19,7 +19,7 @@ jobs:
         with:
           github-token: ${{ secrets.TESTBEST }}
           script: |
-            // Get all open MRs
+            // Get all open PRs
             const pullsResponse = await github.rest.pulls.list({
               ...context.repo,
               base: "${{ inputs.branch }}",
@@ -27,8 +27,8 @@ jobs:
             });
             const prs = pullsResponse.data
 
-            // update all MRs with main.
-            await Promise.allSettled(
+            // update all PRs with main.
+            await Promise.all(
               prs.map((pr) => {
                   github.rest.pulls.updateBranch({
                       ...context.repo,
