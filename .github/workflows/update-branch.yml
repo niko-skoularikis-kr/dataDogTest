@@ -26,6 +26,7 @@ jobs:
               state: "open"
             });
             const prs = pullsResponse.data
+            const test = "hello"
 
             // update all PRs with main.
             await Promise.all(
